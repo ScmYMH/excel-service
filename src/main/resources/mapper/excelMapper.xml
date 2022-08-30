@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.scm.contract.excel.repository.ImportExcelMapper">
+    <insert id="postImportExcelData" parameterType="ImportExcelDto">
+
+        insert into tcms.tb_cntrt_trff_cond_h
+        ("cntrt_id", "trff_id", "lcc_cd", "sub_lcc_cd", "trff_stat_date", "trff_end_date", "cntrt_curr_cd", "pay_curr_cd", "inco_cd", "prod_gcd", "dep_cd", "dep_nm", "arr_nm", "arr_cd", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "lcc_cd_desc")
+        values
+        <foreach collection="list" item="item" separator="," >
+        (
+            #{item.cntrt_id}, #{item.trff_id}, #{item.lcc_cd}, #{item.sub_lcc_cd},
+            #{item.trff_stat_date}, #{item.trff_end_date}, #{item.cntrt_curr_cd},
+            #{item.pay_curr_cd}, #{item.inco_cd}, #{item.prod_gcd}, #{item.dep_cd}, #{item.dep_nm},
+            #{item.arr_nm}, #{item.arr_cd}, #{item.del_yn}, #{item.ins_date}, #{item.ins_time}, #{item.ins_person_id},
+            #{item.upd_date}, #{item.upd_time}, #{item.upd_person_id}, #{item.lcc_cd_desc} )
+
+        </foreach>
+    </insert>
+    <insert id="postImportExcelData2" parameterType="ImportExcelDto">
+
+        INSERT INTO
+        tcms.tb_cntrt_trff_cond_val_d
+        ("cntrt_id", "trff_id", "val_seq_no", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "cond_id",  "cal_unit_cd", "cntrt_curr_cd", "pay_curr_cd", "unit_price")
+        VALUES
+        <foreach collection="list" item="item" separator="," >
+        (
+            #{item.cntrt_id}, #{item.trff_id}, #{item.val_seq_no}, #{item.del_yn}, #{item.ins_date}, #{item.ins_time},
+            #{item.ins_person_id}, #{item.upd_date}, #{item.upd_time}, #{item.upd_person_id}, #{item.cond_id},
+            #{item.cal_unit_cd}, #{item.cntrt_curr_cd}, #{item.pay_curr_cd}, #{item.unit_price})
+    </foreach>
+    </insert>
+    <select id="excelValidationInfo" parameterType="ImportExcelDto" resultType="Integer">
+
+
+        SELECT COUNT(*) AS CNT
+        FROM TCMS.TB_CNTRT_TRFF_COND_H
+        WHERE del_yn IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.del_yn}
+        </foreach>
+        AND cntrt_id IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.cntrt_id}
+        </foreach>
+        AND trff_id IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.trff_id}
+        </foreach>
+        AND dep_cd  IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.dep_cd}
+        </foreach>
+        AND arr_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.arr_cd}
+        </foreach>
+        AND lcc_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.lcc_cd}
+        </foreach>
+        AND sub_lcc_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.sub_lcc_cd}
+        </foreach>
+        AND inco_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.inco_cd}
+        </foreach>
+        AND cntrt_curr_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.cntrt_curr_cd}
+        </foreach>
+        AND pay_curr_cd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.pay_curr_cd}
+        </foreach>
+        AND prod_gcd IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.prod_gcd}
+        </foreach>
+        AND trff_stat_date IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.trff_stat_date}
+        </foreach>
+
+
+    </select>
+</mapper>
+
