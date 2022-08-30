@@ -39,4 +39,8 @@ public class ImportExcelDto {
     private String cal_unit_cd; //계산단위
     private Integer unit_price; //계약단가
     private String corp_id;
+
+    private String lane_cd;
+    private String lane_id;
+    private String cal_mthd_cd;
 }
