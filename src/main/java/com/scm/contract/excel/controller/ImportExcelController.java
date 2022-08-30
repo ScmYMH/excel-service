@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("contract/tariff/import")
+@RequestMapping("excel")
 @Slf4j
 public class ImportExcelController {
 
