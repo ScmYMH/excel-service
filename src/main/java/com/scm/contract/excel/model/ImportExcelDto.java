@@ -43,4 +43,7 @@ public class ImportExcelDto {
     private String lane_cd;
     private String lane_id;
     private String cal_mthd_cd;
+    private String price_tcd;
+    private Integer curr_cnt;
+    private String cond_yn;
 }

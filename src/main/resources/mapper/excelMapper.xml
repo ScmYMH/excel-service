@@ -8,11 +8,12 @@
     <insert id="postImportExcelData" parameterType="ImportExcelDto">
 
         insert into tcms.tb_cntrt_trff_cond_h
-        ("cntrt_id", "trff_id", "lcc_cd", "sub_lcc_cd", "trff_stat_date", "trff_end_date", "cntrt_curr_cd", "pay_curr_cd", "inco_cd", "prod_gcd", "dep_cd", "dep_nm", "arr_nm", "arr_cd", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "lcc_cd_desc")
+        ("cntrt_id", "trff_id", "lcc_cd", "sub_lcc_cd", "lane_cd", "lane_id", "cal_mthd_cd", "trff_stat_date", "trff_end_date", "cntrt_curr_cd", "pay_curr_cd", "inco_cd", "prod_gcd", "dep_cd", "dep_nm", "arr_nm", "arr_cd", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "lcc_cd_desc")
         values
         <foreach collection="list" item="item" separator="," >
         (
             #{item.cntrt_id}, #{item.trff_id}, #{item.lcc_cd}, #{item.sub_lcc_cd},
+            #{item.lane_cd}, #{item.lane_id}, #{item.cal_mthd_cd},
             #{item.trff_stat_date}, #{item.trff_end_date}, #{item.cntrt_curr_cd},
             #{item.pay_curr_cd}, #{item.inco_cd}, #{item.prod_gcd}, #{item.dep_cd}, #{item.dep_nm},
             #{item.arr_nm}, #{item.arr_cd}, #{item.del_yn}, #{item.ins_date}, #{item.ins_time}, #{item.ins_person_id},
@@ -24,12 +25,12 @@
 
         INSERT INTO
         tcms.tb_cntrt_trff_cond_val_d
-        ("cntrt_id", "trff_id", "val_seq_no", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "cond_id",  "cal_unit_cd", "cntrt_curr_cd", "pay_curr_cd", "unit_price")
+        ("cntrt_id", "trff_id", "val_seq_no", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "cond_yn", "curr_cnt", "cond_id", "price_tcd" ,"cal_unit_cd", "cntrt_curr_cd", "pay_curr_cd", "unit_price")
         VALUES
         <foreach collection="list" item="item" separator="," >
         (
             #{item.cntrt_id}, #{item.trff_id}, #{item.val_seq_no}, #{item.del_yn}, #{item.ins_date}, #{item.ins_time},
-            #{item.ins_person_id}, #{item.upd_date}, #{item.upd_time}, #{item.upd_person_id}, #{item.cond_id},
+            #{item.ins_person_id}, #{item.upd_date}, #{item.upd_time}, #{item.upd_person_id}, #{item.cond_yn}, #{item.curr_cnt}, #{item.cond_id}, #{item.price_tcd},
             #{item.cal_unit_cd}, #{item.cntrt_curr_cd}, #{item.pay_curr_cd}, #{item.unit_price})
     </foreach>
     </insert>
@@ -86,6 +87,7 @@
         <foreach collection="list" item="item" open="(" close=")" separator=",">
             #{item.trff_stat_date}
         </foreach>
+
 
 
     </select>
