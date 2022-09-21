@@ -67,8 +67,6 @@ public class ImportExcelServiceImpl implements ImportExcelService {
         if(importExcelMapper.excelValidationInfo(importExcelDto) == 0) {
             importExcelMapper.postImportExcelData(importExcelDto);
             importExcelMapper.postImportExcelData2(importExcelDto);
-//            importExcelMapper.postImportExcelData(importExcelDto, importValiDto);
-//            importExcelMapper.postImportExcelData2(importExcelDto, importValiDto);
             return 2;
         } else {
             return 1;
