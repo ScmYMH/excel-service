@@ -1,6 +1,7 @@
 package com.scm.contract.excel.service;
 
 import com.scm.contract.excel.model.ImportExcelDto;
+import com.scm.contract.excel.model.ImportValiDto;
 import com.scm.contract.excel.repository.ImportExcelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class ImportExcelServiceImpl implements ImportExcelService {
         Date today = new Date();
 
 
-        importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCntrt_id("20220301000003"));
+        importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCntrt_id(importExcelDto1.getCntrt_id()));
+        importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setTrff_id(importExcelDto1.getTrff_id()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setDel_yn("N"));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setIns_date(new SimpleDateFormat("yyyyMMdd").format(today)));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setIns_time(new SimpleDateFormat("HHmmss").format(today)));
@@ -36,14 +38,12 @@ public class ImportExcelServiceImpl implements ImportExcelService {
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setDep_cd(importExcelDto1.getDep_cd()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setDep_nm(importExcelDto1.getDep_nm()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setProd_gcd(importExcelDto1.getProd_gcd()));
-        importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setInco_cd(importExcelDto1.getInco_cd()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setPay_curr_cd(importExcelDto1.getPay_curr_cd()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCntrt_curr_cd(importExcelDto1.getCntrt_curr_cd()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setTrff_end_date(importExcelDto1.getTrff_end_date()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setTrff_stat_date(importExcelDto1.getTrff_stat_date()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setSub_lcc_cd(importExcelDto1.getSub_lcc_cd()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setLcc_cd(importExcelDto1.getLcc_cd()));
-        importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setTrff_id(9));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setVal_seq_no(1));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCond_id(importExcelDto1.getCond_id()));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCond_nm(importExcelDto1.getCond_nm()));
@@ -60,12 +60,15 @@ public class ImportExcelServiceImpl implements ImportExcelService {
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setPrice_tcd("AMT"));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCond_yn("N"));
         importExcelDto.forEach(importExcelDto1 -> importExcelDto1.setCurr_cnt(1));
+
         //Integer aaa = importExcelMapper.excelValidationInfo(importExcelDto);
         //log.info("SELECT 카운트 값 >>> " + aaa);
 
         if(importExcelMapper.excelValidationInfo(importExcelDto) == 0) {
             importExcelMapper.postImportExcelData(importExcelDto);
             importExcelMapper.postImportExcelData2(importExcelDto);
+//            importExcelMapper.postImportExcelData(importExcelDto, importValiDto);
+//            importExcelMapper.postImportExcelData2(importExcelDto, importValiDto);
             return 2;
         } else {
             return 1;

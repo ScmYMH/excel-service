@@ -1,6 +1,7 @@
 package com.scm.contract.excel.controller;
 
 import com.scm.contract.excel.model.ImportExcelDto;
+import com.scm.contract.excel.model.ImportValiDto;
 import com.scm.contract.excel.service.ImportExcelServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,16 @@ public class ImportExcelController {
 
         List<ImportExcelDto> importExcelDto = mapImportExcelDto.get("data");
 
-
-
         return importExcelService.postImportExcelData(importExcelDto);
     }
+//    @PostMapping("")
+//    public Integer  postImportExcelData(@RequestBody Map<String,Object> mapImportExcelDto) {
+//        mapImportExcelDto.get("data");
+//        List<ImportExcelDto> importExcelDto= (List<ImportExcelDto>) mapImportExcelDto.get("data1");
+//        List<ImportValiDto> importValiDto = (List<ImportValiDto>) mapImportExcelDto.get("data2");
+//
+//
+//
+//        return importExcelService.postImportExcelData(importExcelDto, importValiDto);
+//    }
 }

@@ -5,8 +5,20 @@
 
 
 <mapper namespace="com.scm.contract.excel.repository.ImportExcelMapper">
-    <insert id="postImportExcelData" parameterType="ImportExcelDto">
+    <insert id="postImportExcelData" parameterType="ImportExcelDto" >
+<!--        insert into tcms.tb_cntrt_trff_cond_h-->
+<!--        ("dep_cd", "dep_nm", "arr_cd", "arr_nm", "lcc_cd", "sub_lcc_cd", "lcc_cd_desc", "trff_stat_date", "trff_end_date", "cntrt_curr_cd", "pay_curr_cd", "prod_gcd", "cal_unit_cd", "inco_cd", "cond_id", "cond_nm", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "lcc_cd_desc")-->
+<!--        values-->
+<!--        <foreach collection="list" item="item" separator="," >-->
+<!--            (-->
+<!--            #{item.dep_cd}, #{item.dep_nm}, #{item.arr_cd}, #{item.lcc_cd},-->
+<!--            #{item.sub_lcc_cd}, #{item.lcc_cd_desc}, #{item.trff_stat_date},-->
+<!--            #{item.trff_end_date}, #{item.cntrt_curr_cd}, #{item.pay_curr_cd},-->
+<!--            #{item.prod_gcd},  #{item.cal_unit_cd}, #{item.inco_cd}, #{item.cond_id},-->
+<!--            #{item.cond_nm},  #{item.del_yn}, #{item.ins_date}, #{item.ins_time}, #{item.ins_person_id},-->
+<!--            #{item.upd_date}, #{item.upd_time}, #{item.upd_person_id}, #{item.lcc_cd_desc} )-->
 
+<!--        </foreach>-->
         insert into tcms.tb_cntrt_trff_cond_h
         ("cntrt_id", "trff_id", "lcc_cd", "sub_lcc_cd", "lane_cd", "lane_id", "cal_mthd_cd", "trff_stat_date", "trff_end_date", "cntrt_curr_cd", "pay_curr_cd", "inco_cd", "prod_gcd", "dep_cd", "dep_nm", "arr_nm", "arr_cd", "del_yn", "ins_date", "ins_time", "ins_person_id", "upd_date", "upd_time", "upd_person_id", "lcc_cd_desc")
         values

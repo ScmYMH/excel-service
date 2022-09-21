@@ -33,11 +33,12 @@ public class ImportExcelDto {
     private String upd_time;
     private String upd_person_id;
 
+
     private String lcc_cd_desc; //물류비코드 설명
     private String cond_id; //조건Id
     private String cond_nm; //조건명
     private String cal_unit_cd; //계산단위
-    private Integer unit_price; //계약단가
+    private Double unit_price; //계약단가
     private String corp_id;
 
     private String lane_cd;
