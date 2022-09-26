@@ -64,17 +64,17 @@ public class ImportExcelServiceImpl implements ImportExcelService {
         //Integer aaa = importExcelMapper.excelValidationInfo(importExcelDto);
         //log.info("SELECT 카운트 값 >>> " + aaa);
 
-//        if(importExcelMapper.excelValidationInfo(importExcelDto) == 0) {
-//            importExcelMapper.postImportExcelData(importExcelDto);
-//            importExcelMapper.postImportExcelData2(importExcelDto);
-//            return 2;
-//        } else {
-//            return 1;
-//        }
-
+        if(importExcelMapper.excelValidationInfo(importExcelDto) == 0) {
             importExcelMapper.postImportExcelData(importExcelDto);
             importExcelMapper.postImportExcelData2(importExcelDto);
+            return 2;
+        } else {
+            return 1;
+        }
 
-            return 0;
+//            importExcelMapper.postImportExcelData(importExcelDto);
+//            importExcelMapper.postImportExcelData2(importExcelDto);
+//
+//            return 2;
     }
 }
